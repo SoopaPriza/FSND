@@ -28,6 +28,14 @@ With Postgres running, restore a database using the trivia.psql file provided. F
 psql trivia < trivia.psql
 ```
 
+### Setup Environment Variables
+```bash
+export FLASK_APP=flaskr
+export FLASK_ENV=development
+export DBNAME=trivia
+export DBURI=localhost:5432
+```
+
 ### Running the server
 
 From within the `./src` directory first ensure you are working using your created virtual environment.
@@ -82,21 +90,48 @@ One note before you delve into your tasks: for each endpoint, you are expected t
 This README is missing documentation of your endpoints. Below is an example for your endpoint to get all categories. Please use it as a reference for creating your documentation and resubmit your code. 
 
 Endpoints
-GET '/api/v1.0/categories'
-GET ...
-POST ...
-DELETE ...
+GET '/categories'
+GET '/categories/<int:id>/questions'
+GET '/questions'
+POST '/questions'
+POST '/quizzes'
+DELETE '/questions/<int:question_id>'
 
-GET '/api/v1.0/categories'
+GET '/categories'
 - Fetches a dictionary of categories in which the keys are the ids and the value is the corresponding string of the category
 - Request Arguments: None
-- Returns: An object with a single key, categories, that contains a object of id: category_string key:value pairs. 
+- Returns: An object with a single key, categories, that contains an object of id: category_string key:value pairs. 
 {'1' : "Science",
 '2' : "Art",
 '3' : "Geography",
 '4' : "History",
 '5' : "Entertainment",
 '6' : "Sports"}
+
+GET '/categories/<int:id>/questions'
+- Fetches a dictionary of questions where the input is the category id
+- Request Arguments: int:id
+- Returns: A dictionary of questions and answers
+
+GET '/questions'
+- Fetches a dictionary of questions where keys are the ids
+- Request Arguments: None
+- Returns: A dictionary of questions and answers
+
+POST '/questions'
+- Fetches a dictionary of questions where the argument is the (optional) search term
+- Request Arguments: searchTerm (optional)
+- Returns: A dictionary of questions and answers
+
+POST '/quizzes'
+- Fetches a question where the key is the id, and the argument is previousQuestions
+- Request Arguments: previousQuestions
+- Returns: A question and answer
+
+DELETE '/questions/<int:question_id>'
+- Deletes a question where the key is the id
+- Request Arguments: int:question_id
+- Doesn't return anything
 
 ```
 

@@ -3,8 +3,9 @@ from sqlalchemy import Column, String, Integer, create_engine
 from flask_sqlalchemy import SQLAlchemy
 import json
 
-database_name = "trivia"
-database_path = "postgres://{}/{}".format('localhost:5432', 'trivia')
+database_name = os.getenv('DBNAME')
+database_uri = os.getenv('DBURI')
+database_path = "postgres://{}/{}".format(database_uri, database_name)
 
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:vn4%3E%5EZ%274DELyK%2Bv%2B@localhost:5434/trivia'
 
